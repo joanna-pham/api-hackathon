@@ -3,9 +3,17 @@ body {
   background-repeat: repeat;
 }
 
+.bg-color {
+  background-color: #FAE8E8;
+}
+
 .row {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90%;
+  min-height: 500px;
+}
+
+.btn-home {
+  background-color: #FFCC8C;
 }
