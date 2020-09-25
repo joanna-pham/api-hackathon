@@ -23,7 +23,8 @@ function handleClick(e) { //when button is clicked, ajax request is called
 
   //Zomato
   $.ajax({
-    url: 'https://developers.zomato.com/api/v2.1/search?entity_id=92677',
+    // url: 'https://developers.zomato.com/api/v2.1/search?entity_id=92677',
+    url: 'https://developers.zomato.com/api/v2.1/search?entity_id=484&entity_type=city',
     method: 'GET',
     headers: {
       "user-key": "fc53565b99be0fd264e83e23e8ca9552",
