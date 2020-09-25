@@ -1,4 +1,6 @@
 var movieArray; //pass data in global scope
+var restaurantArray;
+
 var container = document.querySelector('container');
 var rowElt = document.querySelector('.row')
 
@@ -6,16 +8,13 @@ var btnHomePage = document.getElementById('btnHomePage');
 btnHomePage.addEventListener('click', handleClick);
 
 function handleClick(e) { //when button is clicked, ajax request is called
-
-  btnHomePage.classList.add('d-none')
-
   //The Movie Database API
   $.ajax({
     url: 'https://api.themoviedb.org/3/movie/top_rated?api_key=b67aeeb26d6866b85c4c2077bf8bbfc0&language=en-US&page=1',
     method: 'GET',
     success: function (data) {
       movieArray = data.results
-      renderData(data.results); //function with placeholder value (passing data as an argument to the function)
+      renderMovie(data.results); //function with placeholder value (passing data as an argument to the function)
     },
     error: function (data) {
       console.log("TMDB Error:", data)
@@ -30,12 +29,16 @@ function handleClick(e) { //when button is clicked, ajax request is called
       "user-key": "fc53565b99be0fd264e83e23e8ca9552",
     },
     success: function (data) {
-      console.log("ZOMATO", data)
+      restaurantArray = data.restaurants
+      renderRestaurant(data.restaurants)
+      console.log("ZOMATO", data.restaurants)
     },
     error: function (data) {
       console.log("ZOMATO Error:", data)
     }
   })
+
+  btnHomePage.innerHTML = "Regenerate"
 
 }
 
@@ -44,8 +47,7 @@ function handleClick(e) { //when button is clicked, ajax request is called
 
 
 //define function has a function keyword -- i.e. renderData
-function renderData() {
-  //MOVIE INFO
+function renderMovie() {
   //--------WHY IS RANDOM MOVIE ALWAYS THE SAME
   var randomMovie = Math.floor(Math.random() * movieArray.length) //pick random number from length of array
   // var poster
@@ -53,14 +55,12 @@ function renderData() {
     randomMovie = movieArray[i]
   }
 
-  var pEltTitle = document.createElement('p');
-  pEltTitle.textContent = randomMovie['original_title'];
+  // var pEltTitle = document.createElement('p');
+  // pEltTitle.textContent = randomMovie['original_title'];
 
   var randomPosterPath = randomMovie['poster_path']; //image path data
-  var randomMovieID = randomMovie['id']; //movie ID number
+  // var randomMovieID = randomMovie['id']; //movie ID number
 
-
-  rowElt.appendChild(pEltTitle)
 
   //MOVIE - Get Image
   $.ajax({
@@ -71,17 +71,52 @@ function renderData() {
       var createImg = document.createElement('img');
       createImg.src = imgUrl + 'w200' + randomPosterPath
 
-      rowElt.appendChild(createImg)
+      var rowMovie = document.getElementById('rowMovie');
 
+      var pEltTitle = document.createElement('h2');
+      pEltTitle.textContent = randomMovie['original_title'];
+
+      rowMovie.appendChild(createImg)
+      rowMovie.appendChild(pEltTitle)
     },
     error: function (data) {
       console.log("Movie Image Error:", data)
     }
   })
 
-  //ZOMATO INFO
+}
 
+function renderRestaurant(){
+  var randomPlace = Math.floor(Math.random() * restaurantArray.length)
+  for(var i = 0; i < restaurantArray.length; i++){
+    randomPlace = restaurantArray[i]
+  }
 
+  var placeImg = document.createElement('img');
+  placeImg.src = randomPlace.restaurant['featured_image'];
+  placeImg.setAttribute('width', '200');
+
+  var pEltPlace = document.createElement('h2');
+  pEltPlace.textContent = randomPlace.restaurant['name'];
+
+  var pPlaceAddress = document.createElement('p');
+  pPlaceAddress.textContent = randomPlace.restaurant.location['address']
+
+  var pNumber = document.createElement('p');
+  pNumber.textContent = randomPlace.restaurant['phone_numbers'];
+
+  var pTime = document.createElement('p');
+  pTime.textContent = randomPlace.restaurant['timings'];
+
+  var rowPlace = document.getElementById('rowPlace');
+  rowPlace.appendChild(placeImg);
+  rowPlace.appendChild(pEltPlace);
+  rowPlace.appendChild(pPlaceAddress)
+  rowPlace.appendChild(pNumber);
+  rowPlace.appendChild(pTime)
+
+  // rowPlace.appendChild(pEltPlace)
+  // container.appendChild(rowPlace)
 
   //------BUTTON TO REGENERATE
   // var btnGenerate = document.createElement('btn');
@@ -94,6 +129,10 @@ function renderData() {
   // spanBtnElt.appendChild(btnGenerate);
   // divRow.appendChild(spanBtnElt);
   // container.appendChild(divRow)
+
 }
 
-//multiple math.random by length of the array
+function reset(){
+  rowPlace.innerHTML = "";
+  rowMovie.innerHTML = "";
+}
