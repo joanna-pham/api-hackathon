@@ -1,5 +1,5 @@
-var movieArray; //pass data in global scope
-var restaurantArray;
+var movieArray = null; //pass data in global scope
+var restaurantArray = null;
 
 var container = document.querySelector('container');
 var rowElt = document.querySelector('.row')
@@ -9,37 +9,55 @@ btnHomePage.addEventListener('click', handleClick);
 
 function handleClick(e) { //when button is clicked, ajax request is called
   //The Movie Database API
+  reset();
   $.ajax({
     url: 'https://api.themoviedb.org/3/movie/top_rated?api_key=b67aeeb26d6866b85c4c2077bf8bbfc0&language=en-US&page=1',
     method: 'GET',
     success: function (data) {
       movieArray = data.results
       renderMovie(data.results); //function with placeholder value (passing data as an argument to the function)
+      //Zomato
+      $.ajax({
+        // url: 'https://developers.zomato.com/api/v2.1/search?entity_id=92677',
+        url: 'https://developers.zomato.com/api/v2.1/search?entity_id=484&entity_type=city',
+        method: 'GET',
+        headers: {
+          "user-key": "fc53565b99be0fd264e83e23e8ca9552",
+        },
+        success: function (data) {
+          restaurantArray = data.restaurants
+          renderRestaurant(data.restaurants)
+          console.log("ZOMATO", data.restaurants)
+        },
+        error: function (data) {
+          console.log("ZOMATO Error:", data)
+        }
+      })
     },
     error: function (data) {
       console.log("TMDB Error:", data)
     }
   })
 
-  //Zomato
-  $.ajax({
-    // url: 'https://developers.zomato.com/api/v2.1/search?entity_id=92677',
-    url: 'https://developers.zomato.com/api/v2.1/search?entity_id=484&entity_type=city',
-    method: 'GET',
-    headers: {
-      "user-key": "fc53565b99be0fd264e83e23e8ca9552",
-    },
-    success: function (data) {
-      restaurantArray = data.restaurants
-      renderRestaurant(data.restaurants)
-      console.log("ZOMATO", data.restaurants)
-    },
-    error: function (data) {
-      console.log("ZOMATO Error:", data)
-    }
-  })
+  // //Zomato
+  // $.ajax({
+  //   // url: 'https://developers.zomato.com/api/v2.1/search?entity_id=92677',
+  //   url: 'https://developers.zomato.com/api/v2.1/search?entity_id=484&entity_type=city',
+  //   method: 'GET',
+  //   headers: {
+  //     "user-key": "fc53565b99be0fd264e83e23e8ca9552",
+  //   },
+  //   success: function (data) {
+  //     restaurantArray = data.restaurants
+  //     renderRestaurant(data.restaurants)
+  //     console.log("ZOMATO", data.restaurants)
+  //   },
+  //   error: function (data) {
+  //     console.log("ZOMATO Error:", data)
+  //   }
+  // })
 
-  btnHomePage.innerHTML = "Regenerate"
+  btnHomePage.textContent = "Regenerate"
 
 }
 
