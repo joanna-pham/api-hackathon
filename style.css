@@ -1,7 +1,6 @@
 body {
   background-image: url('./images/background01.jpg');
   background-repeat: repeat;
-  /* background-image: linear-gradient(to right, #DDBEA9, #A5A58D, #B7B7A4); */
 }
 
 h1 {
@@ -12,20 +11,9 @@ h1 {
   background-color: #FAE8E8;
 }
 
-.row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-}
-
 .btn-home {
   background-color: #FFCC8C;
   color: #827191;
   font-size: 30px;
   margin-bottom: 20px;
 }
-
-/* .container {
-  border: 3px solid black;
-} */
