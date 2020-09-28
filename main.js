@@ -1,8 +1,15 @@
+//To work on:
+// - MOVIE: set img to left side and text to right side when on desktop view
+// - MOVIE: center items
+// - center loading spinner
+// - feature image is not loading
+
 var movieArray = null; //pass data in global scope
 var restaurantArray = null;
 var rowMovie = document.getElementById('rowMovie');
 var rowPlace = document.getElementById('rowPlace');
-
+var movieText = document.getElementById('movieText');
+var placeText = document.getElementById('placeText');
 var container = document.querySelector('container');
 var rowElt = document.querySelector('.row')
 
@@ -14,12 +21,14 @@ function handleClick(e) { //when button is clicked, ajax request is called
   reset();
 
   rowMovie.classList.add('class', 'border')
-  rowMovie.classList.add('class', 'border-primary')
+  rowMovie.classList.add('class', 'border-white')
   rowMovie.classList.add('class', 'rounded')
+  rowMovie.classList.add('class', 'bg-white')
 
   rowPlace.classList.add('class', 'border')
-  rowPlace.classList.add('class', 'border-primary')
+  rowPlace.classList.add('class', 'border-white')
   rowPlace.classList.add('class', 'rounded')
+  rowPlace.classList.add('class', 'bg-white')
 
   $.ajax({
     url: 'https://api.themoviedb.org/3/movie/top_rated?api_key=b67aeeb26d6866b85c4c2077bf8bbfc0&language=en-US&page=1',
@@ -34,6 +43,7 @@ function handleClick(e) { //when button is clicked, ajax request is called
       header.appendChild(spinner);
 
       movieArray = data.results;
+      console.log(movieArray)
       renderMovie(data.results); //function with placeholder value (passing data as an argument to the function)
       //Zomato
       $.ajax({
@@ -70,19 +80,35 @@ function renderMovie() { //define function has a function keyword -- i.e. render
 
   var randomPosterPath = randomMovie['poster_path']; //image path data
 
+  var movieHeaderDiv = document.createElement('div');
+  var movieHeader = document.createElement('img');
+  movieHeader.src = './images/watch-this.png'
+
   var createImg = document.createElement('img');
   createImg.src = 'https://image.tmdb.org/t/p/' + 'w200' + randomPosterPath
+  createImg.classList.add('class', 'm-2')
 
   var pEltTitle = document.createElement('h2');
-  pEltTitle.textContent = randomMovie['original_title'];
+  pEltTitle.textContent = randomMovie.original_title;
 
-  rowMovie.appendChild(createImg)
-  rowMovie.appendChild(pEltTitle)
+  var pSummary = document.createElement('p');
+  pSummary.textContent = 'Summary: ' +randomMovie.overview;
+
+
+  rowMovie.appendChild(movieHeaderDiv);
+  movieHeaderDiv.appendChild(movieHeader)
+  rowMovie.appendChild(createImg);
+  rowMovie.appendChild(movieText);
+  movieText.append(pEltTitle, pSummary);
 }
 
 function renderRestaurant() {
   var randomNumber = Math.floor(Math.random() * restaurantArray.length)
   var randomPlace = restaurantArray[randomNumber]
+
+  var placeHeaderDiv = document.createElement('div');
+  var placeHeader = document.createElement('img');
+  placeHeader.src = './images/eat-this.png';
 
   var placeImg = document.createElement('img');
   if (randomPlace.restaurant['featured_image']) {
@@ -91,6 +117,7 @@ function renderRestaurant() {
     placeImg.src = './images/food-image.png'
   }
   placeImg.setAttribute('width', '200');
+  placeImg.setAttribute('class', 'm-2')
 
   var pEltPlace = document.createElement('h2');
   pEltPlace.textContent = randomPlace.restaurant.name;
@@ -102,9 +129,15 @@ function renderRestaurant() {
   pNumber.textContent = randomPlace.restaurant.phone_numbers;
 
   var pTime = document.createElement('p');
-  pTime.textContent = randomPlace.restaurant['timings'];
+  pTime.textContent = randomPlace.restaurant.timings;
 
-  rowPlace.append(placeImg, pEltPlace, pPlaceAddress, pNumber, pTime);
+  rowPlace.append(placeHeaderDiv);
+  rowPlace.append(placeHeader, placeImg, placeText);
+  // rowPlace.appendChild(placeHeader);
+  // rowPlace.appendChild(placeImg);
+  // rowPlace.appendChild(placeText);
+  placeText.append(pEltPlace, pPlaceAddress, pNumber, pTime)
+
   // rowPlace.appendChild(pEltPlace);
   // rowPlace.appendChild(pPlaceAddress)
   // rowPlace.appendChild(pNumber);
@@ -113,5 +146,7 @@ function renderRestaurant() {
 
 function reset() {
   rowPlace.innerHTML = "";
+  placeText.innerHTML = "";
   rowMovie.innerHTML = "";
+  movieText.innerHTML = "";
 }
