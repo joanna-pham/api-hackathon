@@ -44,6 +44,7 @@ function handleClick(e) { //when button is clicked, ajax request is called
         success: function (data) {
           restaurantArray = data.restaurants
           renderRestaurant(data.restaurants)
+          console.log(data.restaurants)
 
           loadingModal.classList.add('d-none');
         },
@@ -119,7 +120,13 @@ function renderRestaurant() {
   pEltPlace.textContent = randomPlace.restaurant.name;
 
   var pPlaceAddress = document.createElement('p');
-  pPlaceAddress.textContent = randomPlace.restaurant.location.address
+  pPlaceAddress.textContent = randomPlace.restaurant.location.address;
+
+  var pPrice = document.createElement('p');
+  pPrice.textContent = "Price: " +randomPlace.restaurant.currency;
+
+  var pCuisine = document.createElement('p');
+  pCuisine.textContent = "Cuisine: " + randomPlace.restaurant.cuisines;
 
   var pNumber = document.createElement('p');
   pNumber.textContent = randomPlace.restaurant.phone_numbers;
@@ -127,7 +134,7 @@ function renderRestaurant() {
   var pTime = document.createElement('p');
   pTime.textContent = randomPlace.restaurant.timings;
 
-  placeText.append(pEltPlace, pPlaceAddress, pNumber, pTime);
+  placeText.append(pEltPlace, pPlaceAddress, pCuisine, pPrice, pNumber, pTime);
   placeHeaderDiv.appendChild(placeHeader);
   placeImageDiv.appendChild(placeImg);
   rowPlace.append(placeHeaderDiv, placeImageDiv, placeText)
