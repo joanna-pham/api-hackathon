@@ -17,3 +17,17 @@ h1 {
   font-size: 30px;
   margin-bottom: 20px;
 }
+
+.loading-spinner {
+  height: 200px;
+  width: 200px;
+}
+
+.spinner-container {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

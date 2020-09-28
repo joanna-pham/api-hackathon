@@ -11,7 +11,10 @@ var rowPlace = document.getElementById('rowPlace');
 var movieText = document.getElementById('movieText');
 var placeText = document.getElementById('placeText');
 var container = document.querySelector('container');
-var rowElt = document.querySelector('.row')
+var rowElt = document.querySelector('.row');
+var loadingModal = document.getElementById('loadingModal');
+// var movieHeader = document.getElementById('movieHeaderDiv');
+// var placeHeader = document.getElementById('placeHeaderDiv');
 
 var btnHomePage = document.getElementById('btnHomePage');
 btnHomePage.addEventListener('click', handleClick);
@@ -30,20 +33,13 @@ function handleClick(e) { //when button is clicked, ajax request is called
   rowPlace.classList.add('class', 'rounded')
   rowPlace.classList.add('class', 'bg-white')
 
+  loadingModal.classList.remove('d-none');
+
   $.ajax({
     url: 'https://api.themoviedb.org/3/movie/top_rated?api_key=b67aeeb26d6866b85c4c2077bf8bbfc0&language=en-US&page=1',
     method: 'GET',
     success: function (data) {
-      var spinner = document.createElement('img');
-      spinner.src = './images/spinner-icon.gif';
-      // spinner.classList.add('mx-auto');
-      // spinner.classList.add('my-0');
-
-      var header = document.querySelector('.header-tag')
-      header.appendChild(spinner);
-
       movieArray = data.results;
-      console.log(movieArray)
       renderMovie(data.results); //function with placeholder value (passing data as an argument to the function)
       //Zomato
       $.ajax({
@@ -56,7 +52,7 @@ function handleClick(e) { //when button is clicked, ajax request is called
           restaurantArray = data.restaurants
           renderRestaurant(data.restaurants)
 
-          spinner.classList.add('d-none')
+          loadingModal.classList.add('d-none');
         },
         error: function (data) {
           console.log("ZOMATO Error:", data)
@@ -75,17 +71,18 @@ function renderMovie() { //define function has a function keyword -- i.e. render
   var randomNumber = Math.floor(Math.random() * movieArray.length) //pick random number from length of array
   var randomMovie = movieArray[randomNumber]
 
-  // var pEltTitle = document.createElement('p');
-  // pEltTitle.textContent = randomMovie['original_title'];
-
   var randomPosterPath = randomMovie['poster_path']; //image path data
 
   var movieHeaderDiv = document.createElement('div');
-  movieHeaderDiv.classList.add('col')
+  movieHeaderDiv.classList.add('col-6', 'col-sm-12', 'justify-content-center', 'align-items-center')
+
+  // var movieHeaderDiv = document.getElementById('movieHeaderDiv');
 
   var movieHeader = document.createElement('img');
   movieHeader.src = './images/watch-this.png'
-  movieHeader.setAttribute('width', 300)
+  // movieHeader.setAttribute('width', 300)
+  // movieHeader.setAttribute('class', 'mx-auto');
+  // movieHeader.setAttribute('class', 'd-block');
 
   var createImg = document.createElement('img');
   createImg.src = 'https://image.tmdb.org/t/p/' + 'w200' + randomPosterPath
@@ -110,9 +107,14 @@ function renderRestaurant() {
   var randomPlace = restaurantArray[randomNumber]
 
   var placeHeaderDiv = document.createElement('div');
-  placeHeaderDiv.classList.add('class', 'col')
+  placeHeaderDiv.classList.add('col-6', 'col-sm-12', 'justify-content-center', 'align-items-center')
+
+  // var placeHeaderDiv = document.getElementById('placeHeaderDiv');
+
   var placeHeader = document.createElement('img');
   placeHeader.src = './images/eat-this.png';
+  // placeHeader.setAttribute('class', 'mx-auto');
+  // placeHeader.setAttribute('class', 'd-block');
 
   var placeImg = document.createElement('img');
   if (randomPlace.restaurant['featured_image']) {
@@ -120,8 +122,12 @@ function renderRestaurant() {
   } else {
     placeImg.src = './images/food-image.png'
   }
-  placeImg.setAttribute('width', '200');
-  placeImg.setAttribute('class', 'm-2')
+  placeImg.setAttribute('width', '200'); //use CSS
+
+  //object with key for every type
+  //split on comma and space (have an array of cuisine place)
+  //loop over that
+  //check if there is a key in object with that name
 
   var pEltPlace = document.createElement('h2');
   pEltPlace.textContent = randomPlace.restaurant.name;
@@ -135,7 +141,7 @@ function renderRestaurant() {
   var pTime = document.createElement('p');
   pTime.textContent = randomPlace.restaurant.timings;
 
-  rowPlace.append(placeHeaderDiv);
+  rowPlace.appendChild(placeHeaderDiv);
   placeHeaderDiv.appendChild(placeHeader)
   rowPlace.append(placeImg, placeText);
   placeText.append(pEltPlace, pPlaceAddress, pNumber, pTime)
