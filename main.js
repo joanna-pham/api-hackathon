@@ -81,8 +81,11 @@ function renderMovie() { //define function has a function keyword -- i.e. render
   var randomPosterPath = randomMovie['poster_path']; //image path data
 
   var movieHeaderDiv = document.createElement('div');
+  movieHeaderDiv.classList.add('col')
+
   var movieHeader = document.createElement('img');
   movieHeader.src = './images/watch-this.png'
+  movieHeader.setAttribute('width', 300)
 
   var createImg = document.createElement('img');
   createImg.src = 'https://image.tmdb.org/t/p/' + 'w200' + randomPosterPath
@@ -107,6 +110,7 @@ function renderRestaurant() {
   var randomPlace = restaurantArray[randomNumber]
 
   var placeHeaderDiv = document.createElement('div');
+  placeHeaderDiv.classList.add('class', 'col')
   var placeHeader = document.createElement('img');
   placeHeader.src = './images/eat-this.png';
 
@@ -132,16 +136,9 @@ function renderRestaurant() {
   pTime.textContent = randomPlace.restaurant.timings;
 
   rowPlace.append(placeHeaderDiv);
-  rowPlace.append(placeHeader, placeImg, placeText);
-  // rowPlace.appendChild(placeHeader);
-  // rowPlace.appendChild(placeImg);
-  // rowPlace.appendChild(placeText);
+  placeHeaderDiv.appendChild(placeHeader)
+  rowPlace.append(placeImg, placeText);
   placeText.append(pEltPlace, pPlaceAddress, pNumber, pTime)
-
-  // rowPlace.appendChild(pEltPlace);
-  // rowPlace.appendChild(pPlaceAddress)
-  // rowPlace.appendChild(pNumber);
-  // rowPlace.appendChild(pTime)
 }
 
 function reset() {
