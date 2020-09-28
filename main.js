@@ -74,7 +74,7 @@ function renderMovie() { //define function has a function keyword -- i.e. render
   var randomPosterPath = randomMovie['poster_path']; //image path data
 
   var movieHeaderDiv = document.createElement('div');
-  movieHeaderDiv.classList.add('col-6', 'col-sm-12', 'justify-content-center', 'align-items-center')
+  movieHeaderDiv.classList.add('col-6', 'col-sm-12', 'd-flex', 'justify-content-center', 'align-items-center')
 
   // var movieHeaderDiv = document.getElementById('movieHeaderDiv');
 
@@ -107,7 +107,7 @@ function renderRestaurant() {
   var randomPlace = restaurantArray[randomNumber]
 
   var placeHeaderDiv = document.createElement('div');
-  placeHeaderDiv.classList.add('col-6', 'col-sm-12', 'justify-content-center', 'align-items-center')
+  placeHeaderDiv.classList.add('col-6', 'col-sm-12', 'd-flex', 'justify-content-center', 'align-items-center')
 
   // var placeHeaderDiv = document.getElementById('placeHeaderDiv');
 
