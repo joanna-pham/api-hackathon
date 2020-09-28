@@ -23,15 +23,8 @@ function handleClick(e) { //when button is clicked, ajax request is called
   //The Movie Database API
   reset();
 
-  rowMovie.classList.add('class', 'border')
-  rowMovie.classList.add('class', 'border-white')
-  rowMovie.classList.add('class', 'rounded')
-  rowMovie.classList.add('class', 'bg-white')
-
-  rowPlace.classList.add('class', 'border')
-  rowPlace.classList.add('class', 'border-white')
-  rowPlace.classList.add('class', 'rounded')
-  rowPlace.classList.add('class', 'bg-white')
+  rowMovie.classList.add('border', 'border-white', 'rounded', 'bg-white')
+  rowPlace.classList.add('border', 'border-white', 'rounded', 'bg-white')
 
   loadingModal.classList.remove('d-none');
 
@@ -76,17 +69,13 @@ function renderMovie() { //define function has a function keyword -- i.e. render
   var movieHeaderDiv = document.createElement('div');
   movieHeaderDiv.classList.add('col-6', 'col-sm-12', 'd-flex', 'justify-content-center', 'align-items-center')
 
-  // var movieHeaderDiv = document.getElementById('movieHeaderDiv');
-
   var movieHeader = document.createElement('img');
   movieHeader.src = './images/watch-this.png'
-  // movieHeader.setAttribute('width', 300)
-  // movieHeader.setAttribute('class', 'mx-auto');
-  // movieHeader.setAttribute('class', 'd-block');
 
   var createImg = document.createElement('img');
+  var movieImageDiv = document.createElement('div');
+  movieImageDiv.classList.add('col-sm-3', 'd-flex', 'justify-content-center', 'align-items-center')
   createImg.src = 'https://image.tmdb.org/t/p/' + 'w200' + randomPosterPath
-  createImg.classList.add('class', 'm-2')
 
   var pEltTitle = document.createElement('h2');
   pEltTitle.textContent = randomMovie.original_title;
@@ -94,12 +83,10 @@ function renderMovie() { //define function has a function keyword -- i.e. render
   var pSummary = document.createElement('p');
   pSummary.textContent = 'Summary: ' +randomMovie.overview;
 
-
-  rowMovie.appendChild(movieHeaderDiv);
-  movieHeaderDiv.appendChild(movieHeader)
-  rowMovie.appendChild(createImg);
-  rowMovie.appendChild(movieText);
   movieText.append(pEltTitle, pSummary);
+  movieHeaderDiv.appendChild(movieHeader);
+  movieImageDiv.appendChild(createImg)
+  rowMovie.append(movieHeaderDiv, movieImageDiv, movieText)
 }
 
 function renderRestaurant() {
