@@ -96,14 +96,13 @@ function renderRestaurant() {
   var placeHeaderDiv = document.createElement('div');
   placeHeaderDiv.classList.add('col-6', 'col-sm-12', 'd-flex', 'justify-content-center', 'align-items-center')
 
-  // var placeHeaderDiv = document.getElementById('placeHeaderDiv');
-
   var placeHeader = document.createElement('img');
   placeHeader.src = './images/eat-this.png';
-  // placeHeader.setAttribute('class', 'mx-auto');
-  // placeHeader.setAttribute('class', 'd-block');
 
   var placeImg = document.createElement('img');
+  var placeImageDiv = document.createElement('div');
+  placeImageDiv.classList.add('col-sm-3', 'd-flex', 'justify-content-center', 'align-items-center')
+
   if (randomPlace.restaurant['featured_image']) {
     placeImg.src = randomPlace.restaurant['featured_image'];
   } else {
@@ -128,10 +127,10 @@ function renderRestaurant() {
   var pTime = document.createElement('p');
   pTime.textContent = randomPlace.restaurant.timings;
 
-  rowPlace.appendChild(placeHeaderDiv);
-  placeHeaderDiv.appendChild(placeHeader)
-  rowPlace.append(placeImg, placeText);
-  placeText.append(pEltPlace, pPlaceAddress, pNumber, pTime)
+  placeText.append(pEltPlace, pPlaceAddress, pNumber, pTime);
+  placeHeaderDiv.appendChild(placeHeader);
+  placeImageDiv.appendChild(placeImg);
+  rowPlace.append(placeHeaderDiv, placeImageDiv, placeText)
 }
 
 function reset() {
