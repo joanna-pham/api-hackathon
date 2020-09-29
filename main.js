@@ -1,14 +1,11 @@
-//To work on:
-// - feature image is not loading
-
 var cuisineImage = {
-  american: './images/food-american.png',
-  california: './images/food-american.png',
-  cuban: './images/food-cuban.png',
-  dessert: './images/food-dessert.png',
-  mexican: './images/food-mexican.png',
-  seafood: './images/food-seafood.png',
-  vegetarian: './images/food-vegetarian.png'
+  american: './images/food-american.jpg',
+  california: './images/food-american.jpg',
+  cuban: './images/food-cuban.jpg',
+  dessert: './images/food-dessert.jpg',
+  mexican: './images/food-mexican.jpg',
+  seafood: './images/food-seafood.jpg',
+  vegetarian: './images/food-vegetarian.jpg'
 }
 
 var movieArray = null; //pass data in global scope
@@ -49,8 +46,6 @@ function handleClick(e) { //when button is clicked, ajax request is called
         success: function (data) {
           restaurantArray = data.restaurants
           renderRestaurant(data.restaurants)
-          console.log(data.restaurants)
-
           loadingModal.classList.add('d-none');
         },
         error: function (data) {
@@ -113,51 +108,28 @@ function renderRestaurant() {
 
   var cuisines = randomPlace.restaurant.cuisines;
   cuisines = cuisines.toLowerCase(); //cuisine type in lower case
+  var cuisineImgUrl = null;
 
   if (cuisines.includes(',')) {
     cuisines = cuisines.split(', ') //split words in an array
     for (var i = 0; i < cuisines.length; i++) {
       var currentCuisine = cuisines[i]; //loop through cuisine in array
-      console.log("currentCuisine", currentCuisine)
-      if (currentCuisine === cuisineImage.hasOwnProperty(currentCuisine)){
-        placeImg.src = currentCuisine.value
-      } else {
-        placeImg.src = './images/food-image.png'
+      if (cuisineImage.hasOwnProperty(currentCuisine)) { //check if property exists
+        cuisineImgUrl = cuisineImage[currentCuisine]
+        break //stops the for loop
       }
     }
+  } else {
+    // if image does not have a comma
+    // take cuisine type, check if a key exists in cuisineImage
+    // grab the url
+    cuisineImgUrl = cuisineImage[cuisines]
   }
-  // console.log("cuisines", cuisines)
-
-
-
-
-
-  //-----code with Kris------
-  // // console.log("cuisinesSplit", cuisinesSplit) //splits into array
-  // console.log("cuisineImage.food[i]", cuisineImage.food)
-
-  // for (var i = 0; i < cuisinesSplit.length; i++) {
-  //   cuisinesSplit[i].toLowerCase();
-  //   var currentCuisine = cuisinesSplit[i]
-  //   // console.log("cuisines LOWERCASE", cuisinesSplit) //not logging lowercase
-  //   placeImg.src = "";
-  //   for(var property in cuisineImage){
-  //     if(property.toString() === currentCuisine){
-  //       placeImg.src = cuisineImage[property]
-  //     }
-  //   }
-
-  //   if(placeImg.src === ""){
-  //     placeImg.src = './images/food-image.png'
-  //   }
-
-  // }
-  // console.log(cuisinesSplit)
-
-
-
-
-
+  if (!cuisineImgUrl) {
+    placeImg.src = './images/food-image.png'
+  } else {
+    placeImg.src = cuisineImgUrl;
+  }
 
   var pEltPlace = document.createElement('h2');
   pEltPlace.textContent = randomPlace.restaurant.name;
@@ -170,22 +142,6 @@ function renderRestaurant() {
 
   var pCuisine = document.createElement('p');
   pCuisine.textContent = "Cuisine: " + randomPlace.restaurant.cuisines;
-
-
-  //   //object with key for every type
-  //   //split on comma and space (have an array of cuisine place)
-  //   //loop over that
-  //   //check if there is a key in object with that name
-
-
-  // var data = pCuisine.textContent
-  // var cuisineArray = cuisineImage.food[data]
-
-  // console.log("cuisineArray", cuisineArray)
-  // // if (randomPlace.restaurants.cuisines !== "") {
-
-  // // }
-
 
   var pNumber = document.createElement('p');
   pNumber.textContent = randomPlace.restaurant.phone_numbers;
