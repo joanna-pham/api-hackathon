@@ -8,7 +8,7 @@ A front-end JavaScript application that utilizes the Zomato API and The Movie Da
 * JavaScript
 
 ## Live Demo
-(work in progress)
+https://joanna-pham.github.io/api-hackathon/
 
 ## Features
 * Users can generate a random movie and restaurant
