@@ -7,22 +7,39 @@
   <title>EATCH</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"> -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <header class="header-tag">
+  <header class="header-tag justify-content-center align-items-center">
     <div class="bg-color">
       <h1 class="text-center py-2">EATCH</h1>
     </div>
   </header>
 
+
+  <!-- Modal -->
+  <div class="spinner-container d-none" id="loadingModal">
+    <img src="./images/spinner-icon.gif" class="loading-spinner">
+  </div>
+
+
   <div class="container">
-    <div class="row" id="rowMovie"></div>
-    <div class="row" id="rowPlace"></div>
-    <div class="row btn-row">
-      <button type="button" class="btn btn-outline-dark btn-home" id="btnHomePage">What to eatch?</button>
+    <div class="row mx-auto my-0 justify-content-center align-items-center my-3 py-3" id="rowMovie">
+      <!-- <div class="movie-image" id="movie-image"></div> -->
+      <div class="col-sm-7 movie-text" id="movieText"></div>
+    </div>
+
+    <div class="row mx-auto my-0 justify-content-center align-items-center my-3 py-3" id="rowPlace">
+      <!-- <div class="place-image" id="placePhoto"></div> -->
+      <div class="col-sm-7 place-text" id="placeText"></div>
+    </div>
+
+    <div class="row mx-auto my-0 justify-content-center align-items-center my-3 btn-row">
+      <button type="button" class="btn btn-outline-dark btn-home" id="btnHomePage" data-toggle="modal"
+        data-target="#loadingModal">What to eatch?</button>
     </div>
   </div>
 

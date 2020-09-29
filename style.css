@@ -1,7 +1,6 @@
 body {
   background-image: url('./images/background01.jpg');
   background-repeat: repeat;
-  /* background-image: linear-gradient(to right, #DDBEA9, #A5A58D, #B7B7A4); */
 }
 
 h1 {
@@ -12,13 +11,6 @@ h1 {
   background-color: #FAE8E8;
 }
 
-.row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-}
-
 .btn-home {
   background-color: #FFCC8C;
   color: #827191;
@@ -26,6 +18,26 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* .container {
-  border: 3px solid black;
-} */
+.loading-spinner {
+  height: 200px;
+  width: 200px;
+}
+
+.spinner-container {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.disclaimer-text {
+  font-size: 12px;
+  font-style: italic;
+}
+
+.restaurant-image {
+  width: 250px;
+}
