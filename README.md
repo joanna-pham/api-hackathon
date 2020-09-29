@@ -14,7 +14,7 @@ A front-end JavaScript application that utilizes the Zomato API and The Movie Da
 * Users can generate a random movie and restaurant
 
 ## Preview
-(work in progress)
+![preview](images/preview.png)
 
 ## Development
 
