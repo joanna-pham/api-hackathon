@@ -8,7 +8,7 @@ A front-end JavaScript application that utilizes the Zomato API and The Movie Da
 * JavaScript
 
 ## Live Demo
-https://github.com/joanna-pham/eatch.git
+https://joanna-pham.github.io/eatch/
 
 ## Features
 * Users can generate a random movie and restaurant
@@ -21,7 +21,7 @@ https://github.com/joanna-pham/eatch.git
 ### Getting Started
 1. Clone the repository.
 ```shell
-git clone https://github.com/joanna-pham/eatch.git
+git clone https://github.com/joanna-pham/eatch
 cd eatch
 ```
 
