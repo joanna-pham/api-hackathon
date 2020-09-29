@@ -32,3 +32,12 @@ h1 {
   align-items: center;
   z-index: 1;
 }
+
+.disclaimer-text {
+  font-size: 12px;
+  font-style: italic;
+}
+
+.restaurant-image {
+  width: 250px;
+}

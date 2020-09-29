@@ -1,8 +1,15 @@
 //To work on:
-// - MOVIE: set img to left side and text to right side when on desktop view
-// - MOVIE: center items
-// - center loading spinner
 // - feature image is not loading
+
+var cuisineImage = {
+  american: './images/food-american.png',
+  california: './images/food-american.png',
+  cuban: './images/food-cuban.png',
+  dessert: './images/food-dessert.png',
+  mexican: './images/food-mexican.png',
+  seafood: './images/food-seafood.png',
+  vegetarian: './images/food-vegetarian.png'
+}
 
 var movieArray = null; //pass data in global scope
 var restaurantArray = null;
@@ -13,8 +20,6 @@ var placeText = document.getElementById('placeText');
 var container = document.querySelector('container');
 var rowElt = document.querySelector('.row');
 var loadingModal = document.getElementById('loadingModal');
-// var movieHeader = document.getElementById('movieHeaderDiv');
-// var placeHeader = document.getElementById('placeHeaderDiv');
 
 var btnHomePage = document.getElementById('btnHomePage');
 btnHomePage.addEventListener('click', handleClick);
@@ -82,7 +87,7 @@ function renderMovie() { //define function has a function keyword -- i.e. render
   pEltTitle.textContent = randomMovie.original_title;
 
   var pSummary = document.createElement('p');
-  pSummary.textContent = 'Summary: ' +randomMovie.overview;
+  pSummary.textContent = 'Summary: ' + randomMovie.overview;
 
   movieText.append(pEltTitle, pSummary);
   movieHeaderDiv.appendChild(movieHeader);
@@ -101,20 +106,58 @@ function renderRestaurant() {
   placeHeader.src = './images/eat-this.png';
 
   var placeImg = document.createElement('img');
+  placeImg.classList.add('restaurant-image', 'm-2');
   var placeImageDiv = document.createElement('div');
   placeImageDiv.classList.add('col-sm-3', 'd-flex', 'justify-content-center', 'align-items-center')
 
-  if (randomPlace.restaurant['featured_image']) {
-    placeImg.src = randomPlace.restaurant['featured_image'];
-  } else {
-    placeImg.src = './images/food-image.png'
-  }
-  placeImg.setAttribute('width', '200'); //use CSS
 
-  //object with key for every type
-  //split on comma and space (have an array of cuisine place)
-  //loop over that
-  //check if there is a key in object with that name
+  var cuisines = randomPlace.restaurant.cuisines;
+  cuisines = cuisines.toLowerCase(); //cuisine type in lower case
+
+  if (cuisines.includes(',')) {
+    cuisines = cuisines.split(', ') //split words in an array
+    for (var i = 0; i < cuisines.length; i++) {
+      var currentCuisine = cuisines[i]; //loop through cuisine in array
+      console.log("currentCuisine", currentCuisine)
+      if (currentCuisine === cuisineImage.hasOwnProperty(currentCuisine)){
+        placeImg.src = currentCuisine.value
+      } else {
+        placeImg.src = './images/food-image.png'
+      }
+    }
+  }
+  // console.log("cuisines", cuisines)
+
+
+
+
+
+  //-----code with Kris------
+  // // console.log("cuisinesSplit", cuisinesSplit) //splits into array
+  // console.log("cuisineImage.food[i]", cuisineImage.food)
+
+  // for (var i = 0; i < cuisinesSplit.length; i++) {
+  //   cuisinesSplit[i].toLowerCase();
+  //   var currentCuisine = cuisinesSplit[i]
+  //   // console.log("cuisines LOWERCASE", cuisinesSplit) //not logging lowercase
+  //   placeImg.src = "";
+  //   for(var property in cuisineImage){
+  //     if(property.toString() === currentCuisine){
+  //       placeImg.src = cuisineImage[property]
+  //     }
+  //   }
+
+  //   if(placeImg.src === ""){
+  //     placeImg.src = './images/food-image.png'
+  //   }
+
+  // }
+  // console.log(cuisinesSplit)
+
+
+
+
+
 
   var pEltPlace = document.createElement('h2');
   pEltPlace.textContent = randomPlace.restaurant.name;
@@ -123,10 +166,26 @@ function renderRestaurant() {
   pPlaceAddress.textContent = randomPlace.restaurant.location.address;
 
   var pPrice = document.createElement('p');
-  pPrice.textContent = "Price: " +randomPlace.restaurant.currency;
+  pPrice.textContent = "Price: " + randomPlace.restaurant.currency;
 
   var pCuisine = document.createElement('p');
   pCuisine.textContent = "Cuisine: " + randomPlace.restaurant.cuisines;
+
+
+  //   //object with key for every type
+  //   //split on comma and space (have an array of cuisine place)
+  //   //loop over that
+  //   //check if there is a key in object with that name
+
+
+  // var data = pCuisine.textContent
+  // var cuisineArray = cuisineImage.food[data]
+
+  // console.log("cuisineArray", cuisineArray)
+  // // if (randomPlace.restaurants.cuisines !== "") {
+
+  // // }
+
 
   var pNumber = document.createElement('p');
   pNumber.textContent = randomPlace.restaurant.phone_numbers;
@@ -134,7 +193,11 @@ function renderRestaurant() {
   var pTime = document.createElement('p');
   pTime.textContent = randomPlace.restaurant.timings;
 
-  placeText.append(pEltPlace, pPlaceAddress, pCuisine, pPrice, pNumber, pTime);
+  var disclaimer = document.createElement('p');
+  disclaimer.setAttribute('class', 'disclaimer-text')
+  disclaimer.textContent = "*Some featured images are used for illustration purposes only. Actual meal appearances will vary."
+
+  placeText.append(pEltPlace, pPlaceAddress, pCuisine, pPrice, pNumber, pTime, disclaimer);
   placeHeaderDiv.appendChild(placeHeader);
   placeImageDiv.appendChild(placeImg);
   rowPlace.append(placeHeaderDiv, placeImageDiv, placeText)
