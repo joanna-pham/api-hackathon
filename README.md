@@ -8,7 +8,7 @@ A front-end JavaScript application that utilizes the Zomato API and The Movie Da
 * JavaScript
 
 ## Live Demo
-https://joanna-pham.github.io/api-hackathon/
+https://github.com/joanna-pham/eatch.git
 
 ## Features
 * Users can generate a random movie and restaurant
@@ -21,8 +21,8 @@ https://joanna-pham.github.io/api-hackathon/
 ### Getting Started
 1. Clone the repository.
 ```shell
-git clone https://github.com/joanna-pham/api-hackathon
-cd eatch-api
+git clone https://github.com/joanna-pham/eatch.git
+cd eatch
 ```
 
 2. Register for personal API keys at: [Zomato API](https://developers.zomato.com/api) and [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction).
