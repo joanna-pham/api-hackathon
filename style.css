@@ -39,5 +39,11 @@ h1 {
 }
 
 .restaurant-image {
-  width: 250px;
+  max-width: 100%;
+  width: 100%;
+}
+
+.movie-image {
+  max-width: 100%;
+  width: 100%;
 }
