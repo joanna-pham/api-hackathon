@@ -75,8 +75,9 @@ function renderMovie() { //define function has a function keyword -- i.e. render
 
   var createImg = document.createElement('img');
   var movieImageDiv = document.createElement('div');
-  movieImageDiv.classList.add('col-sm-3', 'd-flex', 'justify-content-center', 'align-items-center')
-  createImg.src = 'https://image.tmdb.org/t/p/' + 'w200' + randomPosterPath
+  movieImageDiv.classList.add('col-sm-3', 'd-flex', 'justify-content-center', 'align-items-center');
+  createImg.src = 'https://image.tmdb.org/t/p/' + 'w200' + randomPosterPath;
+  createImg.classList.add('movie-image', 'mb-3');
 
   var pEltTitle = document.createElement('h2');
   pEltTitle.textContent = randomMovie.original_title;
@@ -86,8 +87,8 @@ function renderMovie() { //define function has a function keyword -- i.e. render
 
   movieText.append(pEltTitle, pSummary);
   movieHeaderDiv.appendChild(movieHeader);
-  movieImageDiv.appendChild(createImg)
-  rowMovie.append(movieHeaderDiv, movieImageDiv, movieText)
+  movieImageDiv.appendChild(createImg);
+  rowMovie.append(movieHeaderDiv, movieImageDiv, movieText);
 }
 
 function renderRestaurant() {
