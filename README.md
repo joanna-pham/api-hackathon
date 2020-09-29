@@ -21,7 +21,7 @@ https://joanna-pham.github.io/api-hackathon/
 ### Getting Started
 1. Clone the repository.
 ```shell
-git clone (ADD LINK)
+git clone https://github.com/joanna-pham/api-hackathon
 cd eatch-api
 ```
 
