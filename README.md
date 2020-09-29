@@ -25,11 +25,6 @@ git clone (ADD LINK)
 cd eatch-api
 ```
 
-2. Install all dependencies with NPM.
-```shell
-npm install
-```
+2. Register for personal API keys at: [Zomato API](https://developers.zomato.com/api) and [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction).
 
-3. Register for personal API keys at: [Zomato API](https://developers.zomato.com/api) and [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction)
-
-4. Access application from `index.html` in code editor.
+3. Access application from `index.html` in code editor.
