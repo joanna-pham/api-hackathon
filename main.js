@@ -31,7 +31,9 @@ function handleClick() { //when button is clicked, ajax request is called
   reset();
 
   rowMovie.classList.add('border', 'border-white', 'rounded', 'bg-white')
+  rowMovie.classList.remove('d-none')
   rowPlace.classList.add('border', 'border-white', 'rounded', 'bg-white')
+  rowPlace.classList.remove('d-none')
 
   loadingModal.classList.remove('d-none');
 
@@ -55,6 +57,7 @@ function handleClick() { //when button is clicked, ajax request is called
         },
         error: function (data) {
           console.log("ZOMATO Error:", data)
+          alert("There seems to be an error connecting. Try again when you're online!")
         }
       })
     },
@@ -114,22 +117,19 @@ function renderRestaurant() {
 
 
   var cuisines = randomPlace.restaurant.cuisines;
-  cuisines = cuisines.toLowerCase(); //cuisine type in lower case
+  cuisines = cuisines.toLowerCase();
   var cuisineImgUrl = null;
 
   if (cuisines.includes(',')) {
-    cuisines = cuisines.split(', ') //split words in an array
+    cuisines = cuisines.split(', ')
     for (var i = 0; i < cuisines.length; i++) {
-      var currentCuisine = cuisines[i]; //loop through cuisine in array
-      if (cuisineImage.hasOwnProperty(currentCuisine)) { //check if property exists
+      var currentCuisine = cuisines[i];
+      if (cuisineImage.hasOwnProperty(currentCuisine)) {
         cuisineImgUrl = cuisineImage[currentCuisine]
-        break //stops the for loop
+        break
       }
     }
   } else {
-    // if image does not have a comma
-    // take cuisine type, check if a key exists in cuisineImage
-    // grab the url
     cuisineImgUrl = cuisineImage[cuisines]
   }
   if (!cuisineImgUrl) {
