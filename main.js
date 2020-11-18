@@ -8,7 +8,7 @@ var cuisineImage = {
   vegetarian: './images/food-vegetarian.jpg'
 }
 
-var movieArray = null; //pass data in global scope
+var movieArray = null;
 var restaurantArray = null;
 var rowMovie = document.getElementById('rowMovie');
 var rowPlace = document.getElementById('rowPlace');
@@ -17,11 +17,16 @@ var placeText = document.getElementById('placeText');
 var container = document.querySelector('container');
 var rowElt = document.querySelector('.row');
 var loadingModal = document.getElementById('loadingModal');
+var logo = document.getElementById('logo')
 
-var btnHomePage = document.getElementById('btnHomePage');
-btnHomePage.addEventListener('click', handleClick);
+var header = document.getElementById('header')
+header.addEventListener('click', handleHome)
 
-function handleClick(e) { //when button is clicked, ajax request is called
+var btnRegen = document.getElementById('btnRegenerate');
+btnRegen.addEventListener('click', handleClick);
+
+
+function handleClick() { //when button is clicked, ajax request is called
   //The Movie Database API
   reset();
 
@@ -58,8 +63,9 @@ function handleClick(e) { //when button is clicked, ajax request is called
     }
   })
 
-  btnHomePage.textContent = "Regenerate"
+  btnRegen.textContent = "Regenerate"
 }
+
 
 function renderMovie() { //define function has a function keyword -- i.e. renderData
   var randomNumber = Math.floor(Math.random() * movieArray.length) //pick random number from length of array
@@ -165,4 +171,12 @@ function reset() {
   placeText.innerHTML = "";
   rowMovie.innerHTML = "";
   movieText.innerHTML = "";
+  logo.setAttribute('class', 'd-none')
+}
+
+function handleHome(){
+  rowMovie.setAttribute('class', 'd-none')
+  rowPlace.setAttribute('class', 'd-none')
+  logo.classList.remove('d-none')
+  btnRegen.textContent = 'What to eatch?'
 }

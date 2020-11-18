@@ -1,21 +1,30 @@
-body {
-  background-image: url('./images/background01.jpg');
-  background-repeat: repeat;
+body{
+  background-color: #D45B5B;
 }
 
 h1 {
   color: #827191;
 }
 
-.bg-color {
-  background-color: #FAE8E8;
+.text-center{
+  text-align: center;
 }
 
-.btn-home {
-  background-color: #FFCC8C;
-  color: #827191;
-  font-size: 30px;
-  margin-bottom: 20px;
+.bg-color {
+  background-color: #4D5262;
+  width: 100%;
+}
+
+.header-text {
+  color: #E78631;
+}
+
+.btn-style {
+  background-color: #E4DEDE;
+  color: #4D5262;
+  border-radius: 10px;
+  height: 50px;
+  font-size: 20px;
 }
 
 .loading-spinner {
@@ -46,4 +55,10 @@ h1 {
 .movie-image {
   max-width: 100%;
   width: 100%;
+}
+
+@media screen and (max-width:480px){
+ .logo-img{
+   width: 99%
+ }
 }
