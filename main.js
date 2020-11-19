@@ -30,9 +30,9 @@ function handleClick() { //when button is clicked, ajax request is called
   //The Movie Database API
   reset();
 
-  rowMovie.classList.add('border', 'border-white', 'rounded', 'bg-white')
+  rowMovie.classList.add('row', 'border', 'border-white', 'rounded', 'bg-white', 'mx-1', 'my-2')
   rowMovie.classList.remove('d-none')
-  rowPlace.classList.add('border', 'border-white', 'rounded', 'bg-white')
+  rowPlace.classList.add('row', 'border', 'border-white', 'rounded', 'bg-white', 'mx-1', 'my-2')
   rowPlace.classList.remove('d-none')
 
   loadingModal.classList.remove('d-none');
@@ -77,7 +77,7 @@ function renderMovie() { //define function has a function keyword -- i.e. render
   var randomPosterPath = randomMovie['poster_path']; //image path data
 
   var movieHeaderDiv = document.createElement('div');
-  movieHeaderDiv.classList.add('col-6', 'col-sm-12', 'd-flex', 'justify-content-center', 'align-items-center')
+  movieHeaderDiv.classList.add('col-11', 'm-2', 'd-flex', 'justify-content-center', 'align-items-center')
 
   var movieHeader = document.createElement('img');
   movieHeader.src = './images/watch-this.png'
@@ -106,7 +106,7 @@ function renderRestaurant() {
   var randomPlace = restaurantArray[randomNumber]
 
   var placeHeaderDiv = document.createElement('div');
-  placeHeaderDiv.classList.add('col-6', 'col-sm-12', 'd-flex', 'justify-content-center', 'align-items-center')
+  placeHeaderDiv.classList.add('col-11', 'm-2', 'd-flex', 'justify-content-center', 'align-items-center')
 
   var placeHeader = document.createElement('img');
   placeHeader.src = './images/eat-this.png';
