@@ -30,7 +30,7 @@ function handleClick() { //when button is clicked, ajax request is called
   //The Movie Database API
   reset();
 
-  rowMovie.classList.add('row', 'border', 'border-white', 'rounded', 'bg-white', 'mx-1', 'my-2')
+  rowMovie.classList.add('row', 'border', 'border-white', 'rounded', 'bg-white', 'mx-1', 'my-3')
   rowMovie.classList.remove('d-none')
   rowPlace.classList.add('row', 'border', 'border-white', 'rounded', 'bg-white', 'mx-1', 'my-2')
   rowPlace.classList.remove('d-none')

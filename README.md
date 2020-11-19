@@ -14,16 +14,16 @@ https://joanna-pham.github.io/eatch/
 * Users can generate a random movie and restaurant
 
 ## Preview
-![preview](images/preview.png)
+![preview](images/preview.gif)
 
 ## Development
 
 ### Getting Started
 1. Clone the repository.
-```shell
-git clone https://github.com/joanna-pham/eatch
-cd eatch
-```
+    ```shell
+    git clone https://github.com/joanna-pham/eatch
+    cd eatch
+    ```
 
 2. Register for personal API keys at: [Zomato API](https://developers.zomato.com/api) and [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction).
 
