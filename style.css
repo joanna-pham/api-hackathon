@@ -70,3 +70,15 @@ h1 {
    width: 99%
  }
 }
+
+@media screen and (max-width:320px){
+ .logo-img{
+   width: 295px;
+ }
+ .movie-header-img{
+  width: 260px;
+ }
+ .place-header-img{
+  width: 260px;
+ }
+}

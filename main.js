@@ -81,6 +81,7 @@ function renderMovie() { //define function has a function keyword -- i.e. render
 
   var movieHeader = document.createElement('img');
   movieHeader.src = './images/watch-this.png'
+  movieHeader.classList.add('movie-header-img', 'mb-2')
 
   var createImg = document.createElement('img');
   var movieImageDiv = document.createElement('div');
@@ -109,6 +110,7 @@ function renderRestaurant() {
 
   var placeHeader = document.createElement('img');
   placeHeader.src = './images/eat-this.png';
+  placeHeader.classList.add('place-header-img', 'mb-2')
 
   var placeImg = document.createElement('img');
   placeImg.classList.add('restaurant-image', 'm-2');
@@ -178,5 +180,6 @@ function handleHome(){
   rowMovie.setAttribute('class', 'd-none')
   rowPlace.setAttribute('class', 'd-none')
   logo.classList.remove('d-none')
+  logo.classList.add('logo-img')
   btnRegen.textContent = 'What to eatch?'
 }
