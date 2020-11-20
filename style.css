@@ -6,6 +6,10 @@ h1 {
   color: #827191;
 }
 
+.cursor-pointer{
+  cursor: pointer;
+}
+
 .text-center{
   text-align: center;
 }
@@ -81,4 +85,8 @@ h1 {
  .place-header-img{
   width: 260px;
  }
+}
+
+.border-style{
+  border: 1px solid green;
 }
